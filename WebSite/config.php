@@ -25,14 +25,14 @@
 
 /* Configurations */
 
-$domain = %domain%;
-$ip = %ip%;
-$webport = %webport%;
-$cloudnettoken = %token%
-$cloudnetuser = %user%
+$domain = "%domain%";
+$ip = "%ip%";
+$webport = "%webport%";
+$cloudnettoken = "%token%";
+$cloudnetuser = "%user%";
 $dir = "cloudnet/webinterface/api/v2";
 $dircn = "cloudnet/api/v1/util";
-$version = %version%;
+$version = "%version%";
 $versioncheck = "https://spigot.nevercold.eu/cloudnet/webinterface/version.json";
 $true = "true";
 $false = "false";
