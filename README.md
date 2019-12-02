@@ -15,13 +15,3 @@ DAS WIRD NUR BENÖTIGT, WENN DU EINE SUBDOMAIN (bsp. acp.domain.de) NUTZEN MÖCH
 
 
 
-
-## Meta
-
-Your Name – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
-
-Distributed under the XYZ license. See ``LICENSE`` for more information.
-
-[https://github.com/yourname/github-link](https://github.com/dbader/)
-
-
