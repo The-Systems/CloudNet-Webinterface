@@ -7,40 +7,7 @@ include '../config.php';
 include("tech/LanguageLoader.php");
 $ll = new LanguageLoader();
 
-
-  $options = array('http'=>array('method'=>"GET",'header'=>"-Xversion:aktuelleversion\r\n"));
-  $context = stream_context_create($options);
-  $jsonlol = file_get_contents($versioncheck, false, $context);
-  $json = json_decode($jsonlol);
-  $oldversion = $json->response->oldversion;
-  
-if (in_array($version, $oldversion)) { ?>
-	<h1><span style="color: #FF0000"> <?= $ll->getMessage("oldversion1") ?></span></h1>
-	<h1><span style="color: #FF0000"> <?= $ll->getMessage("oldversion2") ?></span></h1><?php
-}
-?>
-								<?php if($debug == 1) { 
-										echo $jsonlol;
-										} ?>
-<?php
-  $options = array('http'=>array('method'=>"GET",'header'=>"-Xversion:aktuelleversion\r\n"));
-  $context = stream_context_create($options);
-  $jsonlol = file_get_contents($versioncheck, false, $context);
-  $json = json_decode($jsonlol);
-  $publicversion = $json->response->publicversion;
-  
-if (in_array($version, $publicversion)){
-	} else {
-		session_destroy();
-		setcookie("loginname","1",time()-1);
-		setcookie("loginpass","1",time()-1); 
-		header('Location: '.$domain.'/index.php?error=versionerror');
-	} 
-	?>
-								<?php if($debug == 1) { 
-										echo $jsonlol;
-										} ?>
-<?php if($expireenabled == 1) {
+if($expireenabled == 1) {
 if(isset($_SESSION['Logged'])) {
         echo " ";
         //erfolg
@@ -288,53 +255,63 @@ $permgroups = $json->response;
                 <section class="box">
                     <h3>CloudNet - Webinterface</h3>
 					<h4><?= $ll->getMessage("version") ?> <?php echo $version;?> <?= $ll->getMessage("from") ?></h4>
-					
-				<?php
-				
-  $options = array('http'=>array('method'=>"GET",'header'=>"-Xversion:aktuelleversion\r\n"));
-  $context = stream_context_create($options);
-  $jsonlol = file_get_contents($versioncheck, false, $context);
-  $json = json_decode($jsonlol);
-  $newversion = $json->response->version;
-  $devversion = $json->response->devversion;
-  $oldversion = $json->response->oldversion;
-  
-  
-			if (in_array($version, $oldversion)) {?>
-				<h4><?= $ll->getMessage("versionold") ?> <?= $ll->getMessage("newtestversion") ?>: <?php echo $newversion;?></h4> <?php
-			} else {
-				if ($version == $devversion) { ?>
-					<h4><?= $ll->getMessage("versiondev") ?></h4> <?php
-				} else {
-					if ($version == $newversion) { ?>
-						<h4><?= $ll->getMessage("versionnewtest") ?></h4> <?php
-					} else { ?>
-						<h4><?= $ll->getMessage("versionerror") ?></h4> <?php
-						}
-				}	
-			}
-		
-  ?>
-					<p></p>
-					<p><a href="https://discord.gg/CYHuDpx" class="button"><?= $ll->getMessage("supportdiscord") ?></a></p>
-					<p><a href="https://www.spigotmc.org/resources/cloudnet-webinterface.58905/" class="button"><?= $ll->getMessage("spigotpage") ?></a></p>
-					
-					<?php
-  $options = array('http'=>array('method'=>"GET",'header'=>"-Xversion:aktuelleversion\r\n"));
-  $context = stream_context_create($options);
-  $jsonlol = file_get_contents($versioncheck, false, $context);
-  $json = json_decode($jsonlol);
-  $oldversion = $json->response->oldversion;
-  
-if (in_array($version, $oldversion)) { ?>
-	<h1><span style="color: #FF0000"> <?= $ll->getMessage("oldversion1") ?></span></h1>
-	<h1><span style="color: #FF0000"> <?= $ll->getMessage("oldversion2") ?></span></h1><?php
-}
-	?> 
-								<?php if($debug == 1) { 
-										echo $jsonlol;
-										} ?>
-					</section>
+
+                    <?php
+                    $curl = curl_init();
+
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => "https://project.the-systems.eu/api/resource/?resourceid=1&type=latest",
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 2,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    ));
+
+                    $response = curl_exec($curl);
+                    $err = curl_error($curl);
+                    curl_close($curl);
+
+                    if ($err) {
+                        ?><h4>Ein Fehler beim Versions-Überprüfen ist aufgetreten.</h4><?php
+                    } else {
+                        $response = json_decode($response);
+                        if($response->name == $version){
+                            ?><h4>Du nutzt die neuste Version.</h4><?php
+                        } else {
+                            ?><h4>Du nutzt eine alte Version. Die neuste ist: <?php echo $response->name; ?></h4><?php
+                        }
+                    }
+                    ?>
+                    <?php
+                    $curl = curl_init();
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => "https://project.the-systems.eu/api/resource/?resourceid=1&type=info",
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 2,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    ));
+
+                    $response = curl_exec($curl);
+                    $err = curl_error($curl);
+                    curl_close($curl);
+
+                    if ($err) {
+                        ?><h4>Ein Fehler beim Versions-Überprüfen ist aufgetreten.</h4><?php
+                    } else {
+                        $response = json_decode($response);
+                        $support = $response->support;
+                        $url = $response->url;
+
+                    }
+                    ?>
+                    <p></p>
+                    <p><a href="<?php echo $support; ?>" class="button"><?= $ll->getMessage("supportdiscord") ?></a></p>
+                    <p><a href="<?php echo $url; ?>" class="button"><?= $ll->getMessage("spigotpage") ?></a></p>
+
+                </section>
 				</div>
 				<div class="container">
 					<div class="row 150%">

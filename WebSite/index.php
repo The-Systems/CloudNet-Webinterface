@@ -22,38 +22,35 @@ include("logged/tech/LanguageLoader.php");
 $ll = new LanguageLoader();
 ?>
 <?php
-		$url = "http://". $ip . ":" . $webport . "/" . $dir. "";
-		$options = array('http'=>array('method'=>"GET",'header'=>"-Xcloudnet-user:".$cloudnetuser."\r\n"."-Xcloudnet-token:".$cloudnettoken."\r\n".	"-Xmessage:testonline\r\n"."-Xvalue:\r\n"));
-		$context = stream_context_create($options);
-		$jsonlol = file_get_contents($versioncheck, false, $context);
-		$json = json_decode($jsonlol);
-		if ($json->success == true) {
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://project.the-systems.eu/api/resource/?resourceid=1&type=latest",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 2,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+        $response = json_decode($response);
+        if (!$err) {
+
 			$url = "http://". $ip . ":" . $webport . "/" . $dir. "";
 			$options = array('http'=>array('method'=>"GET",'header'=>"-Xcloudnet-user:".$cloudnetuser."\r\n"."-Xcloudnet-token:".$cloudnettoken."\r\n"."-Xmessage:testonline\r\n"."-Xvalue:\r\n"));
 			$context = stream_context_create($options);
 			$jsonlol = file_get_contents($url, false, $context);
 			$json = json_decode($jsonlol);
 			if ($json->success == true) {
-				$options = array('http'=>array('method'=>"GET",'header'=>"-Xversion:aktuelleversion\r\n"));
-				$context = stream_context_create($options);
-				$jsonlol = file_get_contents($versioncheck, false, $context);
-				$json = json_decode($jsonlol);
-				$oldversion = $json->response->oldversion;
-				$newversion = $json->response->version;
-				$publicversion = $json->response->publicversion;
-				if (in_array($version, $oldversion)) {
-				?>
-				<h1><span style="color: #FF0000"> <?= $ll->getMessage("oldversion1") ?></span></h1>
-				<h1><span style="color: #FF0000"> <?= $ll->getMessage("oldversion2") ?></span></h1><?php
-					$options = array('http'=>array('method'=>"GET",'header'=>"-Xversion:aktuelleversion\r\n"));
-					$context = stream_context_create($options);
-					$jsonlol = file_get_contents($versioncheck, false, $context);
-					$json = json_decode($jsonlol);
-					$disableversion = $json->response->disableversion;
-					if (in_array($version, $disableversion)) {
-						echo '<span style="color: #FF0000">Diese Version ist deaktiviert!</span>';
-						exit;
-					}
+				if ($response != $version) {
+				    ?>
+				    <h1><span style="color: #FF0000"> <?= $ll->getMessage("oldversion1") ?></span></h1>
+				    <h1><span style="color: #FF0000"> <?= $ll->getMessage("oldversion2") ?></span></h1>
+                    <?php
 				} 
 			} else {
 				echo '<span style="color: #FF0000"> Es konnte keine Verbindung mit dem CloudNet-Master hergestellt werden.</span>';
@@ -184,24 +181,12 @@ if ($json->success == true) {
 					<p></p>
 					<p><?= $ll->getMessage("data") ?></p>
 					<p></p>
-					<?php
-  $options = array('http'=>array('method'=>"GET",'header'=>"-Xversion:aktuelleversion\r\n"));
-  $context = stream_context_create($options);
-  $jsonlol = file_get_contents($versioncheck, false, $context);
-  $json = json_decode($jsonlol);
-  $newversion = $json->response->version;
-  $devversion = $json->response->devversion;
-  $oldversion = $json->response->oldversion;
-  
-				if ($version == $devversion) { 
-				} else {
-					if ($version == $newversion) {
-					} else {?>
-	<h1><span style="color: #FF0000"> <?= $ll->getMessage("oldversion1") ?></span></h1>
-	<h1><span style="color: #FF0000"> <?= $ll->getMessage("oldversion2") ?></span></h1><?php
-}
-				}
-	?> 
+                    <?php
+                        if ($response != $version) { ?>
+	                        <h1><span style="color: #FF0000"> <?= $ll->getMessage("oldversion1") ?></span></h1>
+                        	<h1><span style="color: #FF0000"> <?= $ll->getMessage("oldversion2") ?></span></h1><?php
+                        }
+                    	?>
                 </section>
             </div>
             <div class="6u 12u$(medium)">
