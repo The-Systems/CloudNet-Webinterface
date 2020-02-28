@@ -19,8 +19,8 @@ jobs:
     - name: Archive artifacts in current GitHub action run
       uses: actions/upload-artifact@v1
       with:
-        name: CN-Webinterface.jar
-        path: target/CN-Webinterface.jar
+        name: CloudNet-2_1-WebInterface.jar
+        path: WebInterface/target/CloudNet-2_1-WebInterface.jar
     - name: Deploy to GitHub packages
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
