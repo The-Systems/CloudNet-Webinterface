@@ -21,10 +21,3 @@ jobs:
       with:
         name: CloudNet-2_1-WebInterface.jar
         path: WebInterface/target/CloudNet-2_1-WebInterface.jar
-    - name: Deploy to GitHub packages
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        mkdir -p ~/.m2
-        echo "<settings><servers><server><id>github</id><username>DeinSystemNET-2020</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
-        mvn deploy
