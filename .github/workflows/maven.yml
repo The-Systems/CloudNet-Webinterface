@@ -27,4 +27,3 @@ jobs:
       run: |
         mkdir -p ~/.m2
         echo "<settings><servers><server><id>github</id><username>The-Systems</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
-        mvn deploy
