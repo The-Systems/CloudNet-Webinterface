@@ -1,17 +1,29 @@
+<img src="https://the-systems.eu/images/favicons/apple-touch-icon.png" width="60px" />
+
 # CloudNet-Webinterface
-> a Webinterface for CloudNet v2
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## Installation
+#### Info
 
-Module:
-1. Lade die Webinterface-version.jar in den Modules Ordner des Masters (Ja, es ist eine Jar Datei.)
-2. Reloade den Master. (rl all), es sollte eine Nachricht erscheinen. (GUCK GENAU!), wenn nicht mach: "wisetup"
+A Webinterface for CloudNet v2
 
-3. Erledige das Setup
-4. Zieh die erstelle Datei (CloudNet-Master/website) auf deinen Webserver. (Standard Verzeichnis: /var/www/html/)
+#### Projectpage
 
+https://project.the-systems.eu/resources/cloudnet-webinterface
 
-DAS WIRD NUR BENÖTIGT, WENN DU EINE SUBDOMAIN (bsp. acp.domain.de) NUTZEN MÖCHTEST!
+#### License
 
-
-
+    Copyright 2020 TheSystems
+    
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    
+        http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+   
