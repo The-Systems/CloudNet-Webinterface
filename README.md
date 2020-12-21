@@ -1,5 +1,8 @@
 <img src="https://the-systems.eu/images/favicons/apple-touch-icon.png" width="60px" />
 
+# Webinterface is no longer developed.
+# please do not look at the code, thank you :(
+
 # CloudNet-Webinterface
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
