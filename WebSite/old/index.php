@@ -33,7 +33,6 @@ curl_setopt_array($curl, array(
     CURLOPT_TIMEOUT => 2,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 ));
-
 $response = curl_exec($curl);
 $err = curl_error($curl);
 curl_close($curl);
@@ -77,23 +76,6 @@ if(isset($_SESSION['Logged'])) {
 }
 
 
-if(isset($_COOKIE['loginname'])) {
-    $email = $_COOKIE['loginname'];
-    $password = $_COOKIE['loginpass'];
-    $url = "http://". $ip . ":" . $webport . "/" . $dir. "";
-    $options = array('http'=>array('method'=>"GET",'header'=>"-Xcloudnet-user:".$cloudnetuser."\r\n"."-Xcloudnet-token:".$cloudnettoken."\r\n"."-Xmessage:authorize\r\n"."-Xvalue:".$email."\r\n-Xpassword:".$password."\r\n"));
-    $context = stream_context_create($options);
-    $jsonlol = file_get_contents($url, false, $context);
-    $json = json_decode($jsonlol);
-    if($json->response == true) {
-        $_SESSION['email'] = $email;
-        $_SESSION['Logged'] = true;
-        header('Location: '.$domain.'/logged/index.php?test=erfolgreich');
-    }
-
-}
-
-
 ?>
 
 <html>
@@ -102,10 +84,10 @@ if(isset($_COOKIE['loginname'])) {
     <meta name="description" content="<?php echo $servername; ?>">
     <meta name="theme-color" content="#424242">
     <meta charset="UTF-8">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/skel.min.js"></script>
-    <script src="js/skel-layers.min.js"></script>
-    <script src="js/init.js"></script>
+    <script src="../public/assets/js/jquery.min.js"></script>
+    <script src="../public/assets/js/skel.min.js"></script>
+    <script src="../public/assets/js/skel-layers.min.js"></script>
+    <script src="../public/assets/js/init.js"></script>
     <?php
     if($recapchaenabled == $true) {
     if($recapchatype == 1) { ?>
@@ -126,10 +108,12 @@ if(isset($_COOKIE['loginname'])) {
     </script>
 
     <noscript>
-        <link rel="stylesheet" href="css/skel.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/style-xlarge.css" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+        <link rel="stylesheet" href="../public/assets/css/skel.css"/>
+        <link rel="stylesheet" href="../public/assets/css/style.css"/>
+        <link rel="stylesheet" href="../public/assets/css/style-xlarge.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+              integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+              crossorigin="anonymous">
     </noscript>
 
 </head>
@@ -196,8 +180,6 @@ if(isset($_COOKIE['loginname'])) {
                     <form id="login" action="login.php" method="post">
                         <p><?= $ll->getMessage("username") ?>: <input type="text" name="email" class="form-control" placeholder="<?= $ll->getMessage("username") ?>" required /></p>
                         <p><?= $ll->getMessage("password") ?>: <input type="password" name="password" class="form-control" placeholder="<?= $ll->getMessage("password") ?>" autocomplete="off" required /></p>
-                        <input type="checkbox" id="cookielogged" name="cookielogged">
-                        <label for="cookielogged"><?= $ll->getMessage("savecookie") ?></label>
                         <p></p>
 
 

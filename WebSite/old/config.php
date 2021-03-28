@@ -33,7 +33,7 @@ $cloudnetuser = "%user%";
 $dir = "cloudnet/webinterface/api/v2";
 $dircn = "cloudnet/api/v1/util";
 $version = "%version%";
-$versioncheck = "https://spigot.nevercold.eu/cloudnet/webinterface/version.json";
+$versioncheck = "https://project.the-systems.eu/api/resource/?resourceid=1";
 $true = "true";
 $false = "false";
 
