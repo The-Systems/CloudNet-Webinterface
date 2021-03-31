@@ -155,6 +155,7 @@ public class WiSetup extends Setup {
 
         File file = new File(outputPath);
         if (!file.exists()) {
+            file.getParentFile().mkdirs();
             file.createNewFile();
         }
         FileOutputStream fileOutputStream = new FileOutputStream(file);
