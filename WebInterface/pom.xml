@@ -67,9 +67,10 @@
                         <configuration>
                             <target>
                                 <zip destfile="${basedir}/target/classes/files/Website.zip"
-                                     basedir="${basedir}/../WebSite"
+                                     basedir="${basedir}/../WebSite/config"
                                      excludes="config.php" />
-                                <copy file="${basedir}/../WebSite/config.php" tofile="${basedir}/target/classes/files/config.php" />
+                                <copy file="${basedir}/../WebSite/config/config.php"
+                                      tofile="${basedir}/target/classes/files/config.php"/>
                             </target>
                         </configuration>
                     </execution>
