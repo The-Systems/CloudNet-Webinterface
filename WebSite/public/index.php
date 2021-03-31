@@ -1,5 +1,4 @@
 <?php
-
 use cloudnet2_webinterface\main;
 
 session_start();
@@ -53,30 +52,28 @@ $route = $app->route;
 
 $route->group('/', function () use ($main) {
     $this->any('/', function () use ($main) {
-        if (isset($_SESSION['Logged'])) {
+        if (isset($_SESSION['cn_webinterface-logged'])) {
             header('Location:' . $main->getconfig("domainurl") . '/logged');
+            die();
         }
         if (isset($_POST['action'])) {
             $_POST['action'] == "login" ? include "../sites/login.php" : false;
         }
-
         include "../sites/header.php";
         include "../sites/index.php";
         include "../sites/footer.php";
     });
     $this->any('/logout', function () use ($main) {
-        if (!isset($_SESSION['Logged'])) {
-            session_destroy();
-            header('Location:' . $main->getconfig("domainurl") . '?error=logout');
-            die();
-        }
+        unset($_SESSION['cn_webinterface-name']);
+        unset($_SESSION['cn_webinterface-logged']);
+        header('Location:' . $main->getconfig("domainurl") . '/');
     });
     $this->group('/logged', function () use ($main) {
-        if (!isset($_SESSION['Logged'])) {
-            header('Location:' . $main->getconfig("domainurl"));
-        }
-
         $this->any('/', function () use ($main) {
+            if (!isset($_SESSION['cn_webinterface-logged'])) {
+                header('Location:' . $main->getconfig("domainurl"));
+                die();
+            }
             if (isset($_POST['action'])) {
                 $_POST['action'] == "setpermgroup" ? $main->sendRequest("dispatchcloudcommand", "create USER " . $_POST['user'] . " " . $_POST['password']) : false;
                 $_POST['action'] == "createuser" ? $main->sendRequest("dispatchcloudcommand+", "perms user " . $_POST['player'] . " group set " . $_POST['group'] . " lifetime") : false;
@@ -106,7 +103,10 @@ $route->group('/', function () use ($main) {
             include "../sites/footer.php";
         });
         $this->any('/console', function () use ($main) {
-
+            if (!isset($_SESSION['cn_webinterface-logged'])) {
+                header('Location:' . $main->getconfig("domainurl"));
+                die();
+            }
             if (isset($_POST['action'])) {
                 $_POST['action'] == "dispatchcommand" ? $main->sendRequest("dispatchcloudcommand", $_POST['command']) : false;
 
@@ -119,6 +119,10 @@ $route->group('/', function () use ($main) {
         });
         $this->group('/proxy', function () use ($main) {
             $this->any('/', function () use ($main) {
+                if (!isset($_SESSION['cn_webinterface-logged'])) {
+                    header('Location:' . $main->getconfig("domainurl"));
+                    die();
+                }
                 if (isset($_POST['action'])) {
                     if ($_POST['action'] == "createproxy") {
                         $wrapper = $_POST['wrapper'];
@@ -152,6 +156,18 @@ $route->group('/', function () use ($main) {
                 include "../sites/footer.php";
             });
             $this->any('/setting', function () use ($main) {
+                if (!isset($_SESSION['cn_webinterface-logged'])) {
+                    header('Location:' . $main->getconfig("domainurl"));
+                    die();
+                }
+                $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.editproxy");
+                if ($json->response != true) {
+                    header('Location:' . $main->getconfig("domainurl") . '/logged/proxy');
+                }
+                if (!isset($_GET['bungee'])) {
+                    header('Location:' . $main->getconfig("domainurl") . '/logged/proxy');
+                }
+
                 if (isset($_POST['action'])) {
 
                     if ($_POST['action'] == "editbungeemotd") {
@@ -226,6 +242,10 @@ $route->group('/', function () use ($main) {
             });
         });
         $this->any('/server', function () use ($main) {
+            if (!isset($_SESSION['cn_webinterface-logged'])) {
+                header('Location:' . $main->getconfig("domainurl"));
+                die();
+            }
             if (isset($_POST['action'])) {
                 if ($_POST['action'] == "createserver") {
                     $wrapper = $_POST['wrapper'];

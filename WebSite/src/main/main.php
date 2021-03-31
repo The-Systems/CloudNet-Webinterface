@@ -29,9 +29,12 @@ class main
         $url = "http://" . self::getconfig("cloudnet_ip") . ":" . self::getconfig("cloudnet_port") . "/" . self::getconfig("cloudnet_api_dir") . "";
         $options = array('http' => array('method' => "GET", 'header' => "-Xcloudnet-user:" . self::getconfig("cloudnet_user") . "\r\n" . "-Xcloudnet-token:" . self::getconfig("cloudnet_token") . "\r\n" . "-Xmessage:" . $message . "\r\n" . "-Xvalue:" . $value . "\r\n" . "-Xextras:" . $extra . "\r\n"));
         $context = stream_context_create($options);
-        $json = json_decode(file_get_contents($url, false, $context));
-
-        return $json;
+        $json = file_get_contents($url, false, $context);
+        if ($json === FALSE) {
+            return false;
+        } else {
+            return json_decode($json);
+        }
     }
 
     public static function sendRequest_amount($message, $value = "", $amount = "")
@@ -39,9 +42,12 @@ class main
         $url = "http://" . self::getconfig("cloudnet_ip") . ":" . self::getconfig("cloudnet_port") . "/" . self::getconfig("cloudnet_api_dir") . "";
         $options = array('http' => array('method' => "GET", 'header' => "-Xcloudnet-user:" . self::getconfig("cloudnet_user") . "\r\n" . "-Xcloudnet-token:" . self::getconfig("cloudnet_token") . "\r\n" . "-Xmessage:" . $message . "\r\n" . "-Xvalue:" . $value . "\r\n" . "-Xamount:" . $amount . "\r\n"));
         $context = stream_context_create($options);
-        $json = json_decode(file_get_contents($url, false, $context));
-
-        return $json;
+        $json = file_get_contents($url, false, $context);
+        if ($json === FALSE) {
+            return false;
+        } else {
+            return json_decode($json);
+        }
     }
 
     public static function sendRequest_login($message, $value, $password)
@@ -49,9 +55,12 @@ class main
         $url = "http://" . self::getconfig("cloudnet_ip") . ":" . self::getconfig("cloudnet_port") . "/" . self::getconfig("cloudnet_api_dir") . "";
         $options = array('http' => array('method' => "GET", 'header' => "-Xcloudnet-user:" . self::getconfig("cloudnet_user") . "\r\n" . "-Xcloudnet-token:" . self::getconfig("cloudnet_token") . "\r\n" . "-Xmessage:" . $message . "\r\n" . "-Xvalue:" . $value . "\r\n-Xpassword:" . $password . "\r\n"));
         $context = stream_context_create($options);
-        $json = json_decode(file_get_contents($url, false, $context));
-
-        return $json;
+        $json = file_get_contents($url, false, $context);
+        if ($json === FALSE) {
+            return false;
+        } else {
+            return json_decode($json);
+        }
     }
 
     public static function language_getMessage($key)
@@ -71,10 +80,14 @@ class main
 
     public static function getversion()
     {
-        $jsonlol = file_get_contents(self::$version->version_url, false);
-        $json = json_decode($jsonlol);
+        $url = self::$version->version_url;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $json = curl_exec($ch);
+        curl_close($ch);
 
-        return $json;
+        return json_decode($json);
     }
 
 

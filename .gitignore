@@ -174,8 +174,6 @@ dist/
 nbdist/
 .nb-gradle/
 
-composer.lock
-/vendor
 /WebSite/vendor
 /WebSite/composer.lock
 

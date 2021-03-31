@@ -6,9 +6,10 @@
         <div class="row">
             <div class="4u 12u$(medium)">
                 <section class="box">
-                    <h3><?= $main->language_getMessage("welcome1") ?> <?= $_SESSION['email'] ?></h3>
+                    <h3><?= $main->language_getMessage("welcome1") ?> <?= $_SESSION['cn_webinterface-name'] ?></h3>
                     <h4><?= $main->language_getMessage("welcome2") ?></h4>
-                    <p><img src="https://minotar.net/cube/<?= $_SESSION['email'] ?>/120" class="img-responsive"></p>
+                    <p><img src="https://minotar.net/cube/<?= $_SESSION['cn_webinterface-name'] ?>/120"
+                            class="img-responsive"></p>
                     <p><a href="<?= $main->getconfig("domainurl") ?>/logout"
                           class="button"><?= $main->language_getMessage("logout") ?></a></p>
                 </section>
@@ -36,7 +37,7 @@
 
                         ?></h2>
                     <?php
-                    $json = $main->sendRequest("permission", $_SESSION['email'], "web.setgroup");
+                    $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.setgroup");
 
                     if ($json->response == true) {
                         ?>
@@ -96,7 +97,10 @@
                     $json = $main->getversion();
                     $version = $main->getcurrentversion();
                     $newversion = $json->response->version;
-                    if ($version != $newversion) { ?>
+                    if ($json == false) { ?>
+                        <h1><span style="color: #FF0000">Der Kontrollserver ist zurzeit nicht erreichbar.</span>
+                        </h1><?php
+                    } elseif ($version != $newversion) { ?>
                         <h1><span style="color: #FF0000"> <?= $main->language_getMessage("oldversion1") ?></span></h1>
                         <h1><span style="color: #FF0000"> <?= $main->language_getMessage("oldversion2") ?></span>
                         </h1><?php
@@ -244,7 +248,7 @@
 
         <div class="row">
             <?php
-            $json = $main->sendRequest("permission", $_SESSION['email'], "web.createuser");
+            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.createuser");
             if ($json->response == true) {
                 ?>
                 <div class="4u 12u$(medium)">
@@ -279,7 +283,7 @@
             }
             ?>
             <?php
-            $json = $main->sendRequest("permission", $_SESSION['email'], "web.deleteuser");
+            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.deleteuser");
             if ($json->response == true) {
                 ?>
                 <div class="4u 12u$(medium)">
@@ -313,7 +317,7 @@
         <div class="row">
 
             <?php
-            $json = $main->sendRequest("permission", $_SESSION['email'], "web.sendcommandtoconsole");
+            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.sendcommandtoconsole");
             if ($json->response == true) {
                 ?>
                 <div class="6u 12u$(medium)">
@@ -345,7 +349,7 @@
             ?>
 
             <?php
-            $json = $main->sendRequest("permission", $_SESSION['email'], "web.sendcommandtoserver");
+            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.sendcommandtoserver");
             if ($json->response == true) {
                 ?>
                 <div class="6u 12u$(medium)">
@@ -384,7 +388,7 @@
 
         <div class="row">
             <?php
-            $json = $main->sendRequest("permission", $_SESSION['email'], "web.console");
+            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.console");
 
             if ($json->response == true) {
                 ?>
@@ -403,7 +407,7 @@
             ?>
 
             <?php
-            $json = $main->sendRequest("permission", $_SESSION['email'], "web.stopcloud");
+            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.stopcloud");
 
             if ($json->response == true) {
                 ?>
@@ -429,7 +433,7 @@
 
 <!-- -->
 <?php
-$json = $main->sendRequest("permission", $_SESSION['email'], "web.onlineserver");
+$json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.onlineserver");
 if ($json->response == true) { ?>
     <?php
     $json = $main->sendRequest("servergroups");

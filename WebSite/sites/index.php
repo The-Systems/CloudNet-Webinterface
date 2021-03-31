@@ -15,7 +15,10 @@
                     $json = $main->getversion();
                     $version = $main->getcurrentversion();
                     $newversion = $json->response->version;
-                    if ($version != $newversion) { ?>
+                    if ($json == false) { ?>
+                        <h1><span style="color: #FF0000">Der Kontrollserver ist zurzeit nicht erreichbar.</span>
+                        </h1><?php
+                    } elseif ($version != $newversion) { ?>
                         <h1><span style="color: #FF0000"> <?= $main->language_getMessage("oldversion1") ?></span></h1>
                         <h1><span style="color: #FF0000"> <?= $main->language_getMessage("oldversion2") ?></span>
                         </h1><?php
@@ -34,7 +37,7 @@
                     <form id="login" method="post">
                         <input type="hidden" name="action" value="login">
                         <p><?= $main->language_getMessage("username") ?>:
-                            <input type="text" name="email" class="form-control"
+                            <input type="text" name="name" class="form-control"
                                    placeholder="<?= $main->language_getMessage("username") ?>" required/>
                         </p>
                         <p><?= $main->language_getMessage("password") ?>:

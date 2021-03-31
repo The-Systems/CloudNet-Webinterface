@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <?php
-            $json = $main->sendRequest("permission", $_SESSION['email'], "web.creategroup");
+            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.creategroup");
             if ($json->response == true) { ?>
                 <div class="4u 12u$(medium)">
                     <section class="box">
@@ -64,7 +64,7 @@
                 </div>
             <?php } ?>
             <?php
-            $json = $main->sendRequest("permission", $_SESSION['email'], "web.startserver");
+            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.startserver");
             if ($json->response == true) {
                 ?>
                 <div class="4u 12u$(medium)">
@@ -109,7 +109,7 @@
             ?>
             <?php
 
-            $json = $main->sendRequest("permission", $_SESSION['email'], "web.editproxy");
+            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.editproxy");
             if ($json->response == true) {
                 ?>
                 <div class="4u 12u$(medium)">
@@ -162,7 +162,7 @@
                 </div>
             <?php } ?>
             <?php
-            $json = $main->sendRequest("permission", $_SESSION['email'], "web.deletegroup");
+            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.deletegroup");
             if ($json->response == true) {
                 ?>
                 <div class="4u 12u$(medium)">
@@ -201,7 +201,7 @@
                 </div>
             <?php } ?>
             <?php
-            $json = $main->sendRequest("permission", $_SESSION['email'], "web.stopserver");
+            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.stopserver");
             if ($json->response == true) {
                 ?>
                 <div class="4u 12u$(medium)">
@@ -230,7 +230,7 @@
                 </div>
             <?php } ?>
             <?php
-            $json = $main->sendRequest("permission", $_SESSION['email'], "web.stopserver");
+            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.stopserver");
             if ($json->response == true) {
                 ?>
                 <div class="4u 12u$(medium)">
