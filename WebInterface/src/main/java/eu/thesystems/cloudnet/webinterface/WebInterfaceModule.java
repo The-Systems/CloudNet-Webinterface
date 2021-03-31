@@ -96,7 +96,7 @@ public class WebInterfaceModule extends CoreModule {
     }
 
     public boolean checkUpdates() {
-        Document document = loadWebsite("https://spigot.nevercold.eu/cloudnet/webinterface/version.json");
+        Document document = loadWebsite("https://project.the-systems.eu/api/resource/?resourceid=1&type=allinfos");
 
         if (document == null || !document.contains("response")) {
             System.out.println("[WebInterfaceModule] There was an error while parsing the version");
@@ -106,18 +106,12 @@ public class WebInterfaceModule extends CoreModule {
         Document response = new Document(document.get("response").getAsJsonObject());
 
         String newestVersion = response.getString("version");
-        String devVersion = response.getString("devversion");
         Collection<String> oldVersions = response.getObject("oldversion", new TypeToken<Collection<String>>() {
         }.getType());
         String currentVersion = getModuleConfig().getVersion();
 
         if (newestVersion.equals(currentVersion)) {
             System.out.println("[WebInterfaceModule] You are using the newest version of the Webinterface");
-            return true;
-        }
-
-        if (devVersion.equals(currentVersion)) {
-            System.out.println("[WebInterfaceModule] You are using the current dev version of the Webinterface");
             return true;
         }
 
@@ -133,7 +127,7 @@ public class WebInterfaceModule extends CoreModule {
     }
 
     public Return<MultiValue<String, String>, Boolean> checkUpdatesSilent() {
-        Document document = loadWebsite("https://spigot.nevercold.eu/cloudnet/webinterface/version.json");
+        Document document = loadWebsite("https://project.the-systems.eu/api/resource/?resourceid=1&type=allinfos");
 
         if (document == null || !document.contains("response")) {
             System.out.println("[WebInterfaceModule] There was an error while parsing the version");
@@ -143,13 +137,11 @@ public class WebInterfaceModule extends CoreModule {
         Document response = new Document(document.get("response").getAsJsonObject());
 
         String newestVersion = response.getString("version");
-        String devVersion = response.getString("devversion");
         Collection<String> oldVersions = response.getObject("oldversion", new TypeToken<Collection<String>>() {
         }.getType());
         String currentVersion = getModuleConfig().getVersion();
 
-        if (newestVersion.equals(currentVersion) || devVersion.equals(currentVersion)) {
-
+        if (newestVersion.equals(currentVersion)) {
             return new Return<>(null, true);
         }
 
@@ -210,7 +202,7 @@ public class WebInterfaceModule extends CoreModule {
             inputStream.close();
             httpURLConnection.disconnect();
             this.extractTo(zip, "Website");
-            this.readAndWriteConfig("Website/config.php");
+            this.readAndWriteConfig("Website/config/config.php");
         } catch (IOException e) {
             e.printStackTrace();
         }

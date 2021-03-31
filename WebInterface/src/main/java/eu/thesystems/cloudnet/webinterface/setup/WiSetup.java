@@ -91,7 +91,7 @@ public class WiSetup extends Setup {
 
                 try {
                     String finalDomain = domain;
-                    readAndWriteConfig(updateConfigurations, "Website/config.php", input -> input.replace("%server_name%", serverName)
+                    readAndWriteConfig(updateConfigurations, "Website/config/config.php", input -> input.replace("%server_name%", serverName)
                             .replace("%domain%", finalDomain)
                             .replace("%ip%", ip)
                             .replace("%webport%", String.valueOf(webport))
