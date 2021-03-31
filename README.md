@@ -1,22 +1,25 @@
-<img src="https://the-systems.eu/images/favicons/apple-touch-icon.png" width="60px" />
-
-# Webinterface is no longer developed.
-# please do not look at the code, thank you :(
-
-# CloudNet-Webinterface
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-#### Info
 
-A Webinterface for CloudNet v2
+<img src="https://cdn.the-systems.eu/icon-transparent-banner.png" width="300px" />
 
-#### Projectpage
+# <b>CloudNet-Webinterface</b>
 
-https://project.the-systems.eu/resources/cloudnet-webinterface
+### A Webinterface for CloudNet 2.1.17+
 
-#### License
+### <span style="color: red">The web interface is not compatible with CloudNet v3!</span>
 
-    Copyright 2020 TheSystems
+## Installation
+
+#### You can find more information about the installation in the [INSTALL.md](./INSTALL.md) file.
+
+## Projectpage
+
+#### https://project.the-systems.eu/resources/cloudnet-webinterface
+
+## License
+
+    Copyright 2021 TheSystems
     
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
