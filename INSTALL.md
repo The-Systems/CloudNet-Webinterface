@@ -30,10 +30,9 @@ You can download the latest version from https://project.the-systems.eu/resource
 
 Info: The web interface also works on an external Webspace!
 
-### Extended
+### Webserver Configuration
 
-#### (Only for expert users, you do not need this)
-Create Apache2 VHost
+#### Apache2
 
 1. Go to /etc/apache2/sites-available
 2. Create a file with the extension .conf
@@ -43,17 +42,27 @@ Create Apache2 VHost
         <VirtualHost *:80>
             ServerName webinterface.domain.com
             DocumentRoot "/var/www/webinterface/"
+
+            <Directory /var/www/webinterface/>
+                    AllowOverride All
+            </Directory>
+
+
         </VirtualHost>
 
 4. Activate the page with
 
         a2ensite webinterface.com
 
-5. Restart Apache2
+5. Enable the Apache2 Module mod-rewrite
+
+        a2enmod rewrite
+
+6. Restart Apache2
 
         service apache2 restart
 
-6. Install SSL Certificate with https://certbot.eff.org/
+7. Install SSL Certificate with https://certbot.eff.org/
 
 ### Install Composer
 
