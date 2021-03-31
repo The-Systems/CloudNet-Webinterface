@@ -170,7 +170,7 @@
     <h1><a href="<?= $main->getconfig("domainurl") ?>"><?= $main->getconfig("name") ?></a></h1>
     <nav id="nav">
         <ul>
-            <?php if (isset($_SESSION['Logged'])) { ?>
+            <?php if (isset($_SESSION['cn_webinterface-logged'])) { ?>
                 <li>
                     <a href="<?= $main->getconfig("domainurl") ?>/logged"><?= $main->language_getMessage("startpage") ?></a>
                 </li>

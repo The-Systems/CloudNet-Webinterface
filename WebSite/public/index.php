@@ -107,6 +107,10 @@ $route->group('/', function () use ($main) {
                 header('Location:' . $main->getconfig("domainurl"));
                 die();
             }
+            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.console");
+            if ($json->response != true) {
+                header('Location:' . $main->getconfig("domainurl") . '/logged');
+            }
             if (isset($_POST['action'])) {
                 $_POST['action'] == "dispatchcommand" ? $main->sendRequest("dispatchcloudcommand", $_POST['command']) : false;
 

@@ -9,17 +9,10 @@ $config = json_encode(array(
     "cloudnet_api_dir" => "cloudnet/webinterface/api/v2",
     "cloudnet_api_dir-by-cn" => "cloudnet/api/v1/util",
 
-    "name" => "XXX",
-
-    "google_analytics_enabled" => "false",
-    "google_analytics_key" => "X",
+    "name" => "%name%",
 
     "google_recaptcha_enabled" => "",
     "google_recaptcha_type" => "",
     "google_recaptcha_public" => "",
     "google_recaptcha_privat" => "",
-
-    "maintenance" => "false",
-    "maintenance_reason" => "Reason",
-
 ));
