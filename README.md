@@ -1,22 +1,32 @@
-<img src="https://the-systems.eu/images/favicons/apple-touch-icon.png" width="60px" />
-
-# Webinterface is no longer developed.
-# please do not look at the code, thank you :(
-
-# CloudNet-Webinterface
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Discord](https://img.shields.io/discord/340197684688453632.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/CYHuDpx)
+<br>
 
-#### Info
+<img src="https://cdn.the-systems.eu/icon-transparent-banner.png" width="300px" />
 
-A Webinterface for CloudNet v2
+# <b>CloudNet-Webinterface</b>
 
-#### Projectpage
+### A Webinterface for CloudNet 2.1.17+
 
-https://project.the-systems.eu/resources/cloudnet-webinterface
+### <span style="color: red">The web interface is not compatible with CloudNet v3!</span>
 
-#### License
+## Installation
 
-    Copyright 2020 TheSystems
+#### You can find more information about the installation in the [INSTALL.md](./INSTALL.md) file.
+
+## Projectpage
+
+#### https://project.the-systems.eu/resources/cloudnet-webinterface
+
+## Support
+
+- via Discord: https://discord.gg/CYHuDpx
+- via Github-Issue: https://github.com/The-Systems/CloudNet-Webinterface/issues
+- via E-Mail to moritz.walter@the-systems.eu
+
+## License
+
+    Copyright 2021 TheSystems
     
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -29,4 +39,15 @@ https://project.the-systems.eu/resources/cloudnet-webinterface
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-   
+
+## Contributors
+
+<a href="https://github.com/The-Systems/CloudNet-Webinterface/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=The-Systems/CloudNet-Webinterface" alt="Contributors"/>
+</a>
+
+<br>
+
+### thank you, for using our software.
+
+
