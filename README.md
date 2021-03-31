@@ -1,4 +1,5 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Discord](https://img.shields.io/discord/340197684688453632.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/CYHuDpx)
 <br>
 
 <img src="https://cdn.the-systems.eu/icon-transparent-banner.png" width="300px" />
@@ -17,6 +18,12 @@
 
 #### https://project.the-systems.eu/resources/cloudnet-webinterface
 
+## Support
+
+- via Discord: https://discord.gg/CYHuDpx
+- via Github-Issue: https://github.com/The-Systems/CloudNet-Webinterface/issues
+- via E-Mail to moritz.walter@the-systems.eu
+
 ## License
 
     Copyright 2021 TheSystems
@@ -32,4 +39,15 @@
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-   
+
+## Contributors
+
+<a href="https://github.com/The-Systems/CloudNet-Webinterface/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=The-Systems/CloudNet-Webinterface" alt="Contributors"/>
+</a>
+
+<br>
+
+### thank you, for using our software.
+
+

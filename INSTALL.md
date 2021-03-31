@@ -5,6 +5,18 @@
 
 # <b>CloudNet-Webinterface</b>
 
+## Requirement
+
+- CloudNet 2.1.17+ (NOT v3!)
+
+- Webserver (or Webspace)
+    - PHP 7+ (PHP8 recommended)
+    - PHP Extensions: Curl
+
+## Download
+
+You can download the latest version from https://project.the-systems.eu/resources/cloudnet-webinterface
+
 ## Installation
 
 1. Load the webinterface.jar into the Modules folder of the CloudNet-Master
@@ -20,6 +32,7 @@ Info: The web interface also works on an external Webspace!
 
 ### Extended
 
+#### (Only for expert users, you do not need this)
 Create Apache2 VHost
 
 1. Go to /etc/apache2/sites-available
@@ -42,9 +55,9 @@ Create Apache2 VHost
 
 6. Install SSL Certificate with https://certbot.eff.org/
 
-## Install Composer
+### Install Composer
 
-### Debian 10
+#### Debian 10
 
     curl -sS https://getcomposer.org/installer | php
     php composer.phar install --no-dev -o
