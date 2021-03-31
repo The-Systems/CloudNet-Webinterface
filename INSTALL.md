@@ -1,7 +1,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 <img src="https://cdn.the-systems.eu/icon-transparent-banner.png" width="300px" />
 
-# CloudNet-Webinterface by The-Systems.eu
+# <b>CloudNet-Webinterface</b>
 
 ## Installation
 
