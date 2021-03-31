@@ -9,5 +9,8 @@
         <module name="WebInterface" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="CloudNetWebinterface" target="7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
