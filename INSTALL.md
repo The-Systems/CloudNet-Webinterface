@@ -55,7 +55,7 @@ Info: The web interface also works on an external Webspace!
 
 4. Activate the page with
 
-        a2ensite webinterface.com
+        a2ensite webinterface.conf
 
 5. Restart Apache2
 
@@ -83,7 +83,7 @@ Info: The web interface also works on an external Webspace!
 
 ## Download
 
-Du hast die aktuelle Version von https://project.the-systems.eu/resources/cloudnet-webinterface herunterladen
+Du kannst die aktuelle Version von https://project.the-systems.eu/resources/cloudnet-webinterface herunterladen
 
 ## Installation
 
@@ -121,7 +121,7 @@ Info: Das Webinterface funktioniert ebenfalls auf einem Externen Webserver/Websp
 
 4. Aktiviere die Seite mit
 
-        a2ensite webinterface.com
+        a2ensite webinterface.conf
 
 5. Starte Apache2 neu
 

@@ -29,7 +29,7 @@ You can download the latest version from https://project.the-systems.eu/resource
 
 ## Download
 
-Du hast die aktuelle Version von https://project.the-systems.eu/resources/cloudnet-webinterface herunterladen
+Du kannst die aktuelle Version von https://project.the-systems.eu/resources/cloudnet-webinterface herunterladen
 
 ## Installation
 
