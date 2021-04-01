@@ -11,9 +11,9 @@
 - CloudNet 2.1.17+ (NOT v3!)
 
 - Webserver (or Webspace)
-   - PHP 7+ (PHP8 recommended)
-   - PHP Extensions: Curl (apt-get instll phpX-curl)
-   - Apache2 Mods: rewrite (a2enmod rewrite)
+    - PHP 7+ (PHP8 recommended)
+    - PHP Extensions: Curl (apt-get install phpX-curl)
+    - Apache2 Mods: rewrite (a2enmod rewrite)
 
 ## Download
 
@@ -77,9 +77,9 @@ Info: The web interface also works on an external Webspace!
 - CloudNet 2.1.17+ (NICHT v3!)
 
 - Webserver (oder Webspace)
-   - PHP 7+ (PHP8 empfohlen)
-   - PHP Erweiterungen: Curl (apt-get instll phpX-curl)
-   - Apache2 Mods: rewrite (a2enmod rewrite)
+    - PHP 7+ (PHP8 empfohlen)
+    - PHP Erweiterungen: Curl (apt-get install phpX-curl)
+    - Apache2 Mods: rewrite (a2enmod rewrite)
 
 ## Download
 
