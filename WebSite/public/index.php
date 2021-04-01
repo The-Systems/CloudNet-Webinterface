@@ -75,8 +75,8 @@ $route->group('/', function () use ($main) {
                 die();
             }
             if (isset($_POST['action'])) {
-                $_POST['action'] == "setpermgroup" ? $main->sendRequest("dispatchcloudcommand", "create USER " . $_POST['user'] . " " . $_POST['password']) : false;
-                $_POST['action'] == "createuser" ? $main->sendRequest("dispatchcloudcommand+", "perms user " . $_POST['player'] . " group set " . $_POST['group'] . " lifetime") : false;
+                $_POST['action'] == "createuser" ? $main->sendRequest("dispatchcloudcommand", "create USER " . $_POST['user'] . " " . $_POST['password']) : false;
+                $_POST['action'] == "setpermgroup" ? $main->sendRequest("dispatchcloudcommand+", "perms user " . $_POST['player'] . " group set " . $_POST['group'] . " lifetime") : false;
                 $_POST['action'] == "deleteuser" ? $main->sendRequest("deleteuser", $_POST['user']) : false;
                 $_POST['action'] == "dispatchcommand" ? $main->sendRequest("dispatchcloudcommand", $_POST['command']) : false;
                 $_POST['action'] == "sendcommandtoserver" ? $main->sendRequest("dispatchcloudcommand", "cmd " . $_POST['server'] . " " . $_POST['command']) : false;
