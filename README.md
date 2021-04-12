@@ -14,6 +14,10 @@
 
 #### You can find more information about the installation in the [INSTALL.md](./INSTALL.md) file.
 
+## Updating
+
+#### You can find more information about updating in the [UPDATE.md](./UPDATE.md) file.
+
 ## Projectpage
 
 #### https://project.the-systems.eu/resources/cloudnet-webinterface
