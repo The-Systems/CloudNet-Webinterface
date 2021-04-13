@@ -13,7 +13,7 @@ You can download the latest version from https://project.the-systems.eu/resource
 ## Installation
 
 1. Load the webinterface.jar into the Modules folder of the CloudNet-Master
-2. Reloade the CloudNet-Master with "rl all"
+2. Reload the CloudNet-Master with "rl all"
 3. Start the Setup with "wisetup"
 4. Complete the setup
 
