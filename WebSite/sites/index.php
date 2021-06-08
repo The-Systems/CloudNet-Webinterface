@@ -2,9 +2,9 @@
     <header class="major">
         <h2><?= $main->getconfig("name") ?></h2>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="6u 12u$(medium)">
+            <div class="col-sm-6">
                 <section class="box">
                     <h3><?= $main->language_getMessage("webinterface") ?></h3>
                     <p><?= $main->language_getMessage("loginacc") ?></p>
@@ -26,7 +26,7 @@
                     ?>
                 </section>
             </div>
-            <div class="6u 12u$(medium)">
+            <div class="col-sm-6">
                 <section id="2" class="box">
                     <h3><?= $main->language_getMessage("login") ?></h3>
                     <?php

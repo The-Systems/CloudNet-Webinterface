@@ -11,6 +11,7 @@
                     </h5>
                 </section>
             </div>
+            <i class="fas fa-bars"></i>
 
             <div class="6u 12u$(medium)">
                 <section id="1" class="box">

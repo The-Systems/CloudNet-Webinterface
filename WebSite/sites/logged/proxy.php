@@ -1,10 +1,10 @@
 <section id="1" class="wrapper style">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <?php
             $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.creategroup");
             if ($json->response == true) { ?>
-                <div class="4u 12u$(medium)">
+                <div class="col-4">
                     <section class="box">
                         <h3><?= $main->language_getMessage("createproxygroup") ?></h3>
                         <p><?= $main->language_getMessage("createproxygroupinfo") ?></p>
@@ -67,7 +67,7 @@
             $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.startserver");
             if ($json->response == true) {
                 ?>
-                <div class="4u 12u$(medium)">
+                <div class="col-4">
                     <section class="box">
                         <h3><?= $main->language_getMessage("startproxy") ?></h3>
                         <p><?= $main->language_getMessage("startproxyinfo") ?></p>
@@ -112,7 +112,7 @@
             $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.editproxy");
             if ($json->response == true) {
                 ?>
-                <div class="4u 12u$(medium)">
+                <div class="col-4">
                     <section class="box">
                         <h3><?= $main->language_getMessage("changeproxy") ?></h3>
                         <p><?= $main->language_getMessage("changeproxyinfo") ?></p>
@@ -165,7 +165,7 @@
             $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.deletegroup");
             if ($json->response == true) {
                 ?>
-                <div class="4u 12u$(medium)">
+                <div class="col-4">
                     <section class="box">
                         <h3><?= $main->language_getMessage("deleteproxygroup") ?></h3>
                         <p><?= $main->language_getMessage("deleteproxygroup") ?></p>
@@ -204,7 +204,7 @@
             $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.stopserver");
             if ($json->response == true) {
                 ?>
-                <div class="4u 12u$(medium)">
+                <div class="col-4">
                     <section id="2" class="box">
                         <h3><?= $main->language_getMessage("stopproxy") ?></h3>
                         <p><?= $main->language_getMessage("stopproxyinfo") ?></p>
@@ -233,7 +233,7 @@
             $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.stopserver");
             if ($json->response == true) {
                 ?>
-                <div class="4u 12u$(medium)">
+                <div class="col-4">
                     <section id="2" class="box">
                         <h3><?= $main->language_getMessage("stopallproxy") ?></h3>
                         <p><?= $main->language_getMessage("stopallproxyinfo") ?></p>

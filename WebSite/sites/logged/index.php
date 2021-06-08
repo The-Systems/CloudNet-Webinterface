@@ -2,9 +2,9 @@
     <header class="major">
         <h2><?= $main->getconfig("name") ?></h2>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="4u 12u$(medium)">
+            <div class="col-md-6 col-lg-4">
                 <section class="box">
                     <h3><?= $main->language_getMessage("welcome1") ?> <?= $_SESSION['cn_webinterface-name'] ?></h3>
                     <h4><?= $main->language_getMessage("welcome2") ?></h4>
@@ -14,7 +14,7 @@
                           class="button"><?= $main->language_getMessage("logout") ?></a></p>
                 </section>
             </div>
-            <div class="4u 12u$(medium)">
+            <div class="col-md-6 col-lg-4">
                 <section class="box">
                     <h2>
                         <?php
@@ -66,7 +66,7 @@
                                 $json = $main->sendRequest("permissiongroups");
                                 $permgroups = $json->response;
                                 ?>
-                                <p><?= $main->language_getMessage("group") ?><select name="gruppe"></p>
+                                <p><?= $main->language_getMessage("group") ?><select name="group"></p>
                                 <?php foreach ($permgroups as $element): ?>
                                     <option value="<?php echo $element->name; ?>"><span
                                                 style="color: #40FF00"><?php echo $element->name; ?></span></option>
@@ -83,7 +83,7 @@
                 </section>
 
             </div>
-            <div class="4u 12u$(medium)">
+            <div class="col-md-6 col-lg-4">
                 <section class="box">
                     <h3>CloudNet - Webinterface</h3>
                     <h4><?= $main->language_getMessage("version") ?> <?= $main->getcurrentversion(); ?> <?= $main->language_getMessage("from") ?></h4>
@@ -108,51 +108,50 @@
                     ?>
                 </section>
             </div>
-            <div class="container">
-                <div class="row 150%">
-                    <div class="4u 12u$(medium)">
-                        <section class="box">
-                            <i class="icon big rounded color1 fa-cloud"></i>
-                            <?php
-                            $json = $main->sendRequest("cpucores");
-                            ?>
+            <div class="col-md-6 col-lg-4">
+                <section class="box">
 
-                            <h3><?= $main->language_getMessage("cpu") ?></h3>
-                            <h1><?= $main->language_getMessage("all") ?>: <?php echo $json->response; ?></h1>
-                        </section>
-                    </div>
-                    <div class="4u 12u$(medium)">
-                        <section class="box">
-                            <i class="icon big rounded color1 fa-desktop"></i>
-                            <?php
-                            $json = $main->sendRequest("wrappers");
-                            ?>
-                            <h3><?= $main->language_getMessage("wrapper") ?></h3>
-                            <h1><?= $main->language_getMessage("connect") ?>
-                                : <?php echo $json->response->connected; ?></h1>
-                            <h1><?= $main->language_getMessage("notconnect") ?>
-                                : <?php echo $json->response->notConnected; ?></h1>
-                        </section>
-                    </div>
-                    <div class="4u$ 12u$(medium)">
-                        <section class="box">
-                            <i class="icon big rounded color1 fa-hdd-o"></i>
-                            <?php
-                            $json = $main->sendRequest("networkmemory");
-                            $usedmemory = $json->response->usedMemory;
-                            $maxmemory = $json->response->maxMemory;
-                            ?>
-                            <h3><?= $main->language_getMessage("ram") ?></h3>
-                            <h1><?php echo strtr($main->language_getMessage("mbused"), ["@used" => $usedmemory, "@max" => $maxmemory]); ?></h1>
-                        </section>
-                    </div>
-                </div>
+                    <div class="icon big rounded color1"><i class="fas fa-microchip"></i></div>
+                    <?php
+                    $json = $main->sendRequest("cpucores");
+                    ?>
+
+                    <h3><?= $main->language_getMessage("cpu") ?></h3>
+                    <h1><?= $main->language_getMessage("all") ?>: <?php echo $json->response; ?></h1>
+                </section>
             </div>
+            <div class="col-md-6 col-lg-4">
+                <section class="box">
+                    <div class="icon big rounded color1"><i class="fas fa-desktop"></i></div>
+                    <?php
+                    $json = $main->sendRequest("wrappers");
+                    ?>
+                    <h3><?= $main->language_getMessage("wrapper") ?></h3>
+                    <h1><?= $main->language_getMessage("connect") ?>
+                        : <?php echo $json->response->connected; ?></h1>
+                    <h1><?= $main->language_getMessage("notconnect") ?>
+                        : <?php echo $json->response->notConnected; ?></h1>
+                </section>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <section class="box">
+                    <div class="icon big rounded color1"><i class="fas fa-memory"></i></div>
+                    <?php
+                    $json = $main->sendRequest("networkmemory");
+                    $usedmemory = $json->response->usedMemory;
+                    $maxmemory = $json->response->maxMemory;
+                    ?>
+                    <h3><?= $main->language_getMessage("ram") ?></h3>
+                    <h1><?php echo strtr($main->language_getMessage("mbused"), ["@used" => $usedmemory, "@max" => $maxmemory]); ?></h1>
+                </section>
+            </div>
+        </div>
+    </div>
 </section>
 <section class="wrapper style special">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="12u 12u$(medium)" name="test">
+            <div class="col-md-6 col-lg-12" name="test">
                 <section class="box">
 
                     <h3><?= $main->language_getMessage("stats") ?></h3>
@@ -244,74 +243,6 @@
                     </h5>
                 </section>
             </div>
-        </div>
-
-        <div class="row">
-            <?php
-            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.createuser");
-            if ($json->response == true) {
-                ?>
-                <div class="4u 12u$(medium)">
-                    <section class="box">
-                        <h3><?= $main->language_getMessage("createuser") ?></h3>
-                        <p><?= $main->language_getMessage("createuserinfo") ?></p>
-                        <form method="post">
-                            <input type="hidden" name="action" value="setpermgroup">
-
-                            <p><?= $main->language_getMessage("createusername") ?>: <input type="text" name="user"
-                                                                                           class="form-control"
-                                                                                           placeholder="<?= $main->language_getMessage("createusername") ?>"
-                                                                                           required/></p>
-                            <p><?= $main->language_getMessage("createuserpassword") ?>: <input type="password"
-                                                                                               name="password"
-                                                                                               class="form-control"
-                                                                                               placeholder="<?= $main->language_getMessage("createuserpassword") ?>"
-                                                                                               required/></p>
-                            <p></p>
-                            <input type="submit" value="<?= $main->language_getMessage("createtheuser") ?>"/>
-                        </form>
-                        <p><?php
-                            if (isset($_GET["action"])) {
-                                if ($_GET["action"] == "createuser") {
-                                    echo '<span style="color: #40FF00">' . $main->language_getMessage("successusercreated") . '</span>';
-                                }
-                            }
-                            ?>    </p>
-                    </section>
-                </div>
-                <?php
-            }
-            ?>
-            <?php
-            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.deleteuser");
-            if ($json->response == true) {
-                ?>
-                <div class="4u 12u$(medium)">
-                    <section class="box">
-                        <h3><?= $main->language_getMessage("deleteuser") ?></h3>
-                        <p><?= $main->language_getMessage("deleteuserinfo") ?></p>
-                        <form method="post">
-                            <input type="hidden" name="action" value="deleteuser">
-                            <p><?= $main->language_getMessage("createusername") ?>: <input type="text" name="user"
-                                                                                           class="form-control"
-                                                                                           placeholder="<?= $main->language_getMessage("createusername") ?>"
-                                                                                           required/></p>
-                            <p></p>
-                            <input type="submit" value="<?= $main->language_getMessage("deletetheuser") ?>"/>
-                        </form>
-                        <p><?php
-                            if (isset($_GET["action"])) {
-                                if ($_GET["action"] == "deleteuser") {
-                                    echo '<span style="color: #40FF00">' . $main->language_getMessage("successusercreated") . '</span>';
-                                }
-                            }
-
-                            ?>    </p>
-                    </section>
-                </div>
-                <?php
-            }
-            ?>
         </div>
 
         <div class="row">
@@ -430,255 +361,3 @@
         </div>
     </div>
 </section>
-
-<!-- -->
-<?php
-$json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.onlineserver");
-if ($json->response == true) { ?>
-    <?php
-    $json = $main->sendRequest("servergroups");
-    $servergroups = $json->response;
-    ?>
-    <section id="2" class="wrapper style">
-        <header class="major">
-            <h2><?= $main->language_getMessage("onlineserver") ?></h2>
-        </header>
-        <div class="container">
-            <div class="row">
-                <h3><?= $main->language_getMessage("server") ?></h3>
-                <form method="POST">
-                    <input type="hidden" name="action" value="infostopallserver">
-                    <input type="submit" value="<?= $main->language_getMessage("allstop") ?>"/>
-                </form>
-                <div class="table-scrollable">
-                    <table>
-                        <tr>
-                            <th><?= $main->language_getMessage("group") ?></th>
-                            <th><?= $main->language_getMessage("typ") ?></th>
-                            <th><?= $main->language_getMessage("online") ?></th>
-                            <th><?= $main->language_getMessage("server") ?></th>
-                            <th><?= $main->language_getMessage("wrapper") ?></th>
-                            <th><?= $main->language_getMessage("port") ?></th>
-                            <th><?= $main->language_getMessage("player") ?></th>
-                            <th><?= $main->language_getMessage("template") ?></th>
-                            <th><?= $main->language_getMessage("state") ?></th>
-                            <th><?= $main->language_getMessage("template") ?></th>
-                            <th><?= $main->language_getMessage("ram") ?></th>
-                            <th><?= $main->language_getMessage("stopserver") ?></th>
-                        </tr>
-
-                        <!-- Alle gruppen auflisten -->
-                        <?php foreach ($servergroups as $element):
-
-                            $json = $main->sendRequest("serverinfos", $element->name);
-                            $serverinfos = $json->response;
-                            ?>
-
-                            <tr>
-                                <td><?php echo $element->name; ?></td>
-                                <td><?php echo $element->groupMode; ?></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-
-                                    <form method="POST">
-                                        <input type="hidden" name="action" value="infostopgroup">
-                                        <input type="hidden" name="id" value="<?php echo $element->name; ?>">
-                                        <input type="submit" value="<?= $main->language_getMessage("stop") ?>"/>
-                                    </form>
-                                </td>
-                            </tr>
-                            <?php foreach ($serverinfos as $element): ?>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td><?php if ($element->online == true) {
-                                        ?>
-                                        <span style="font-size: 25px; color: #40FF00;">
-												<i class="fa fa-check"></i>
-											</span>
-                                        <?php
-                                    } else { ?>
-                                        <span style="font-size: 25px; color: #FF0000;">
-												<i class="fa fa-times"></i>
-											</span>
-                                        <?php
-                                    }
-                                    ?></td>
-                                <td><?php echo $element->serviceId->serverId; ?></td>
-                                <td><?php echo $element->serviceId->wrapperId; ?></td>
-                                <td><?php echo $element->port; ?></td>
-                                <td><?php echo $element->onlineCount; ?> / <?php echo $element->maxPlayers; ?>   </td>
-                                <td><?php echo $element->template->name; ?></td>
-                                <td><?php echo $element->serverState; ?></td>
-                                <td><?php echo $element->motd; ?></td>
-                                <td><?php echo $element->memory ?>mb</td>
-                                <td>
-
-                                    <form method="POST">
-                                        <input type="hidden" name="action" value="infostopserver">
-                                        <input type="hidden" name="id"
-                                               value="<?php echo $element->serviceId->serverId; ?>">
-                                        <input type="submit" value="<?= $main->language_getMessage("stop") ?>"/>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                        <?php endforeach; ?>
-                    </table>
-                </div>
-            </div>
-            <div class="row">
-
-
-                <?php
-                $json = $main->sendRequest("proxygroups");
-
-                $proxygroups = $json->response;
-                ?>
-
-                <h3><?= $main->language_getMessage("proxy") ?></h3>
-                <form method="POST">
-                    <input type="hidden" name="action" value="infostopallproxy">
-                    <input type="submit" value="<?= $main->language_getMessage("allstop") ?>"/>
-                </form>
-                <br>
-                <div class="table-scrollable">
-                    <table>
-                        <tr>
-                            <th><?= $main->language_getMessage("group") ?></th>
-                            <th><?= $main->language_getMessage("typ") ?></th>
-                            <th><?= $main->language_getMessage("online") ?></th>
-                            <th><?= $main->language_getMessage("server") ?></th>
-                            <th><?= $main->language_getMessage("wrapper") ?></th>
-                            <th><?= $main->language_getMessage("port") ?></th>
-                            <th><?= $main->language_getMessage("player") ?></th>
-                            <th><?= $main->language_getMessage("ram") ?></th>
-                            <th><?= $main->language_getMessage("stopproxy") ?></th>
-                        </tr>
-
-                        <?php foreach ($proxygroups as $element):
-
-                            $json = $main->sendRequest("proxyinfos", $element->name);
-
-                            $proxyinfos = $json->response;
-                            ?>
-
-                            <tr>
-                                <td><?php echo $element->name; ?></td>
-                                <td><?php echo $element->proxyGroupMode; ?></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <form method="POST">
-                                        <input type="hidden" name="action" value="infostopgroup">
-                                        <input type="hidden" name="id" value="<?php echo $element->name; ?>">
-                                        <input type="submit" value="<?= $main->language_getMessage("stop") ?>"/>
-                                    </form>
-                                </td>
-                            </tr>
-                            <?php foreach ($proxyinfos as $element): ?>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td><?php if ($element->online == true) {
-                                        ?>
-                                        <span style="font-size: 25px; color: #40FF00;">
-												<i class="fa fa-check"></i>
-											</span>
-                                        <?php
-                                    } else { ?>
-                                        <span style="font-size: 25px; color: #FF0000;">
-												<i class="fa fa-times"></i>
-											</span>
-                                        <?php
-                                    }
-                                    ?></td>
-                                <td><?php echo $element->serviceId->serverId; ?></td>
-                                <td><?php echo $element->serviceId->wrapperId; ?></td>
-                                <td><?php echo $element->port; ?></td>
-                                <td><?php echo $element->onlineCount; ?></td>
-                                <td><?php echo $element->memory ?>mb</td>
-                                <td>
-
-                                    <form method="POST">
-                                        <input type="hidden" name="action" value="infostopproxy">
-                                        <input type="hidden" name="id"
-                                               value="<?php echo $element->serviceId->serverId; ?>">
-                                        <input type="submit" value="<?= $main->language_getMessage("stop") ?>"/>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                        <?php endforeach; ?>
-                    </table>
-                </div>
-            </div>
-            <div class="row">
-                <?php
-
-                $json = $main->sendRequest("wrapper");
-                $wrapper = $json->response;
-                ?>
-                <h3><?= $main->language_getMessage("wrapper") ?></h3>
-
-                <form method="POST">
-                    <input type="hidden" name="action" value="infostopallwrapper">
-                    <input type="submit" value="<?= $main->language_getMessage("allstop") ?>"/>
-                </form>
-                <br>
-                <div class="table-scrollable">
-                    <table>
-                        <tr>
-                            <th><?= $main->language_getMessage("wrapper") ?></th>
-                            <th><?= $main->language_getMessage("ip") ?></th>
-                            <th><?= $main->language_getMessage("startport") ?></th>
-                            <th><?= $main->language_getMessage("ram") ?></th>
-                            <th><?= $main->language_getMessage("cpucores") ?></th>
-                            <th><?= $main->language_getMessage("cpuload") ?></th>
-                            <th><?= $main->language_getMessage("queuesize") ?></th>
-                            <th><?= $main->language_getMessage("stopwrapper") ?></th>
-                        </tr>
-
-                        <?php
-                        $json = $main->sendRequest("wrapperinfos", $element->id);
-                        $wrapperinfos = $json->response;
-                        ?>
-                        <?php foreach ($wrapperinfos as $element): ?>
-                            <tr>
-                                <td><?php echo $element->serverId; ?></td>
-                                <td><?php echo $element->hostName; ?></td>
-                                <td><?php echo $element->startPort; ?></td>
-                                <td><?php echo $element->usedMemory; ?>mb / <?php echo $element->memory; ?>mb</td>
-                                <td><?php echo $element->availableProcessors; ?></td>
-                                <td><?php echo $element->cpuUsage; ?></td>
-                                <td><?php echo $element->process_queue_size; ?></td>
-                                <td>
-
-                                    <form method="POST">
-                                        <input type="hidden" name="action" value="infostopwrapper">
-                                        <input type="hidden" name="id" value="<?php echo $element->serverId; ?>">
-                                        <input type="submit" value="<?= $main->language_getMessage("stop") ?>"/>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-    <?php
-}
-?>

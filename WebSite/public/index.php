@@ -1,4 +1,5 @@
 <?php
+
 use cloudnet2_webinterface\main;
 
 session_start();
@@ -76,8 +77,7 @@ $route->group('/', function () use ($main) {
             }
             if (isset($_POST['action'])) {
                 $_POST['action'] == "createuser" ? $main->sendRequest("dispatchcloudcommand", "create USER " . $_POST['user'] . " " . $_POST['password']) : false;
-                $_POST['action'] == "setpermgroup" ? $main->sendRequest("dispatchcloudcommand+", "perms user " . $_POST['player'] . " group set " . $_POST['group'] . " lifetime") : false;
-                $_POST['action'] == "deleteuser" ? $main->sendRequest("deleteuser", $_POST['user']) : false;
+                $_POST['action'] == "setpermgroup" ? $main->sendRequest("dispatchcloudcommand", "perms user " . $_POST['player'] . " group set " . $_POST['group'] . " lifetime") : false;
                 $_POST['action'] == "dispatchcommand" ? $main->sendRequest("dispatchcloudcommand", $_POST['command']) : false;
                 $_POST['action'] == "sendcommandtoserver" ? $main->sendRequest("dispatchcloudcommand", "cmd " . $_POST['server'] . " " . $_POST['command']) : false;
 
@@ -93,11 +93,9 @@ $route->group('/', function () use ($main) {
                 $_POST['action'] == "infostopproxy" ? $main->sendRequest("stopproxy", $_POST['id']) : false;
                 $_POST['action'] == "infostopwrapper" ? $main->sendRequest("shutdownwrapper", $_POST['id']) : false;
                 $_POST['action'] == "infostopgroup" ? $main->sendRequest("dispatchcloudcommand", "shutdown GROUP " . $_POST['id']) : false;
-
                 header('Location:' . $main->getconfig("domainurl") . '/logged?action=' . $_POST['action']);
                 die();
             }
-
             include "../sites/header.php";
             include "../sites/logged/index.php";
             include "../sites/footer.php";
@@ -119,6 +117,34 @@ $route->group('/', function () use ($main) {
             }
             include "../sites/header.php";
             include "../sites/logged/console.php";
+            include "../sites/footer.php";
+        });
+        $this->any('/status', function () use ($main) {
+            if (!isset($_SESSION['cn_webinterface-logged'])) {
+                header('Location:' . $main->getconfig("domainurl"));
+                die();
+            }
+            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.console");
+            if ($json->response != true) {
+                header('Location:' . $main->getconfig("domainurl") . '/logged');
+            }
+            if (isset($_POST['action'])) {
+                $_POST['action'] == "dispatchcommand" ? $main->sendRequest("dispatchcloudcommand", $_POST['command']) : false;
+                $_POST['action'] == "infostopallserver" ? $main->sendRequest("shutdownservers") : false;
+                $_POST['action'] == "infostopallproxy" ? $main->sendRequest("shutdownproxys") : false;
+                $_POST['action'] == "infostopallwrapper" ? $main->sendRequest("shutdownwrappers") : false;
+
+
+                $_POST['action'] == "infostopserver" ? $main->sendRequest("stopserver", $_POST['id']) : false;
+                $_POST['action'] == "infostopproxy" ? $main->sendRequest("stopproxy", $_POST['id']) : false;
+                $_POST['action'] == "infostopwrapper" ? $main->sendRequest("shutdownwrapper", $_POST['id']) : false;
+                $_POST['action'] == "infostopgroup" ? $main->sendRequest("dispatchcloudcommand", "shutdown GROUP " . $_POST['id']) : false;
+
+                header('Location:' . $main->getconfig("domainurl") . '/logged/status?action=' . $_POST['action']);
+                die();
+            }
+            include "../sites/header.php";
+            include "../sites/logged/status.php";
             include "../sites/footer.php";
         });
         $this->group('/proxy', function () use ($main) {
@@ -245,7 +271,7 @@ $route->group('/', function () use ($main) {
                 include "../sites/footer.php";
             });
         });
-        $this->any('/server', function () use ($main) {
+        $this->any('/servers', function () use ($main) {
             if (!isset($_SESSION['cn_webinterface-logged'])) {
                 header('Location:' . $main->getconfig("domainurl"));
                 die();
@@ -275,16 +301,34 @@ $route->group('/', function () use ($main) {
                 $_POST['action'] == "stopallserver" ? $main->sendRequest("shutdownservers") : false;
 
 
-                header('Location:' . $main->getconfig("domainurl") . '/logged/server?action=' . $_POST['action']);
+                header('Location:' . $main->getconfig("domainurl") . '/logged/servers?action=' . $_POST['action']);
                 die();
             }
 
 
             include "../sites/header.php";
-            include "../sites/logged/server.php";
+            include "../sites/logged/servers.php";
             include "../sites/footer.php";
         });
+        $this->any('/users', function () use ($main) {
+            if (!isset($_SESSION['cn_webinterface-logged'])) {
+                header('Location:' . $main->getconfig("domainurl"));
+                die();
+            }
 
+            if (isset($_POST['action'])) {
+                $_POST['action'] == "createuser" ? $main->sendRequest("dispatchcloudcommand", "user create " . $_POST['user'] . " " . $_POST['password']) : false;
+                $_POST['action'] == "deleteuser" ? $main->sendRequest("deleteuser", $_POST['user']) : false;
+
+                header('Location:' . $main->getconfig("domainurl") . '/logged/users?action=' . $_POST['action']);
+                echo $_POST['user'] . $_POST['password'];
+                die();
+            }
+
+            include "../sites/header.php";
+            include "../sites/logged/user.php";
+            include "../sites/footer.php";
+        });
     });
 });
 
