@@ -1,30 +1,28 @@
 <section id="one" class="wrapper style">
-    <div class="container">
+    <header class="major">
+        <h2><?= $main->language_getMessage("console") ?></h2>
+    </header>
+    <div class="container-fluid">
         <div class="row">
-            <div class="20u 12u$(medium)">
-                <section class="box">
-                    <h5><?php
+            <div class="col-lg-12" style="max-height: 700px">
+                <div class='box scrollTop' id="scroll">
+                    <h5 style="color: #ffffff;"><?php
                         $json = $main->sendRequest("corelog");
                         $log = $json->log;
                         echo $log;
                         ?>
                     </h5>
-                </section>
+                </div>
             </div>
-            <i class="fas fa-bars"></i>
 
-            <div class="6u 12u$(medium)">
+            <div class="col-lg-12">
                 <section id="1" class="box">
-                    <h3><?= $main->language_getMessage("sendcommandtoconsole") ?></h3>
-                    <p><?= $main->language_getMessage("sendcommandtoconsoleinfo") ?></p>
                     <form method="POST">
                         <input type="hidden" name="action" value="dispatchcommand">
-                        <p><?= $main->language_getMessage("command") ?>: <input type="text" name="command"
-                                                                                class="form-control"
-                                                                                placeholder="<?= $main->language_getMessage("command") ?>"
-                                                                                required/></p>
-                        <p></p>
-                        <input type="submit" value="<?= $main->language_getMessage("sendcommand") ?>"/>
+                        <div class="input-group mb-3">
+                            <input type="text" name="command" class="form-control" placeholder="<?= $main->language_getMessage("command") ?>" aria-describedby="button-addon2" required>
+                            <input class="btn btn-outline-secondary" type="submit" id="button-addon2" placeholder="<?= $main->language_getMessage("command") ?>">
+                        </div>
                     </form>
                     <p><?php
                         if (isset($_GET["action"])) {
@@ -38,6 +36,13 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function scrollDown() {
+            var scrolldiv = document.getElementById( "scroll" );
+            scrolldiv.scrollTop = scrolldiv.scrollHeight;
+        }
+        window.addEventListener('load', scrollDown, false);
+    </script>
 </section>
 
 

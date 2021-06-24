@@ -150,23 +150,22 @@
 </section>
 <section class="wrapper style special">
     <div class="container-fluid">
+        <h3><?= $main->language_getMessage("stats") ?></h3>
         <div class="row">
-            <div class="col-md-6 col-lg-12" name="test">
-                <section class="box">
-
-                    <h3><?= $main->language_getMessage("stats") ?></h3>
+            <?php
+            $json = $main->sendRequest("statistics");
+            ?>
+            <div class="col-md-6 col-lg-2" name="test">
+                <div class="box">
+                    <div class="icon rounded color1"><i class="fas fa-cloud"></i></div>
                     <p></p>
-                    <?php
-                    $json = $main->sendRequest("statistics");
-                    ?>
-
                     <h5><?= $main->language_getMessage("statscloudstart") ?>:
                         <?php
                         if (strpos(json_encode($json), 'cloudStartup') === false){
                             echo $main->language_getMessage("nostatsexits");
                         } else {
                         echo $json->response->cloudStartup; ?></h5><?php
-                } ?>
+                    } ?>
                     <h5><?= $main->language_getMessage("statswrapperstart") ?>:
                         <?php
                         if (strpos(json_encode($json), 'wrapperConnections') === false){
@@ -174,34 +173,59 @@
                         } else {
                         echo $json->response->wrapperConnections; ?></h5><?php
                 } ?>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-2" name="test">
+                <div class="box">
+                    <div class="icon rounded color1">  <i class="fas fa-headset"></i> </div>
+                    <p></p>
                     <h5><?= $main->language_getMessage("statsplayerlogin") ?>:
                         <?php
                         if (strpos(json_encode($json), 'playerLogin') === false){
                             echo $main->language_getMessage("nostatsexits");
                         } else {
                         echo $json->response->playerLogin; ?></h5><?php
-                } ?>
+                    } ?>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-2" name="test">
+                <div class="box">
+                    <div class="icon rounded color1"> <i class="fas fa-headset"></i></div>
+                    <p></p>
                     <h5><?= $main->language_getMessage("statsplayermaxon") ?>:
                         <?php
                         if (strpos(json_encode($json), 'highestPlayerOnline') === false){
                             echo $main->language_getMessage("nostatsexits");
                         } else {
                         echo $json->response->highestPlayerOnline; ?></h5><?php
-                } ?>
+                    } ?>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-2" name="test">
+                <div class="box">
+                    <div class="icon rounded color1"><i class="fas fa-code"></i></div>
+                    <p></p>
                     <h5><?= $main->language_getMessage("statssendcommands") ?>:
                         <?php
                         if (strpos(json_encode($json), 'playerCommandExecutions') === false){
                             echo $main->language_getMessage("nostatsexits");
                         } else {
                         echo $json->response->playerCommandExecutions; ?></h5><?php
-                } ?>
+                    } ?>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-2" name="test">
+                <div class="box">
+                    <div class="icon rounded color1"><i class="fas fa-server"></i></div>
+                    <p></p>
                     <h5><?= $main->language_getMessage("statsstartserver") ?>:
                         <?php
                         if (strpos(json_encode($json), 'startedServers') === false){
                             echo $main->language_getMessage("nostatsexits");
                         } else {
                         echo $json->response->startedServers; ?></h5><?php
-                } ?>
+                    } ?>
                     <h5><?= $main->language_getMessage("statsstartproxy") ?>:
                         <?php
                         if (strpos(json_encode($json), 'startedProxys') === false){
@@ -209,26 +233,20 @@
                         } else {
                         echo $json->response->startedProxys; ?></h5><?php
                 } ?>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-2" name="test">
+                <div class="box">
+                    <div class="icon rounded color1">  <i class="fas fa-server"></i></div>
+                    <p></p>
                     <h5><?= $main->language_getMessage("statsmaxonlineserver") ?>:
                         <?php
                         if (strpos(json_encode($json), 'highestServerOnlineCount') === false){
                             echo $main->language_getMessage("nostatsexits");
                         } else {
                         echo $json->response->highestServerOnlineCount; ?></h5><?php
-                } ?>
-                    <h5><?= $main->language_getMessage("statsservergroups") ?>: <?php
-
-
-                        $json = $main->sendRequest("servergroups");
-                        $servergroups = $json->response;
-                        $groupamount = 0;
-                        foreach ($servergroups as $element) {
-                            $groupamount++;
-                        }
-                        echo $groupamount;
-                        ?>
-                    </h5>
-
+                    } ?>
                     <?php
                     $json = $main->sendRequest("proxygroups");
                     $proxygroups = $json->response;
@@ -240,8 +258,19 @@
                         }
                         echo $groupamount;
                         ?>
-                    </h5>
-                </section>
+                        <h5><?= $main->language_getMessage("statsservergroups") ?>: <?php
+
+
+                            $json = $main->sendRequest("servergroups");
+                            $servergroups = $json->response;
+                            $groupamount = 0;
+                            foreach ($servergroups as $element) {
+                                $groupamount++;
+                            }
+                            echo $groupamount;
+                            ?>
+                        </h5>
+                </div>
             </div>
         </div>
 
@@ -318,24 +347,6 @@
         </div>
 
         <div class="row">
-            <?php
-            $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.console");
-
-            if ($json->response == true) {
-                ?>
-                <div class="6u 12u$(medium)">
-                    <section class="box">
-                        <h3><?= $main->language_getMessage("console") ?></h3>
-                        <p><?= $main->language_getMessage("consoleinfo") ?></p>
-                        <p></p>
-                        <p><a href="<?= $main->getconfig("domainurl"); ?>/logged/console"
-                              class="button"><?= $main->language_getMessage("openconsole") ?></a></p>
-                    </section>
-                </div>
-
-                <?php
-            }
-            ?>
 
             <?php
             $json = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.stopcloud");

@@ -221,6 +221,9 @@
                 <li>
                     <a href="<?= $main->getconfig("domainurl") ?>/logged/proxy"><?= $main->language_getMessage("proxypage") ?></a>
                 </li>
+                <li>
+                    <a href="<?= $main->getconfig("domainurl") ?>/logged/console"><?= $main->language_getMessage("console") ?></a>
+                </li>
             <?php } ?>
             <li>
                 <a>

@@ -157,7 +157,7 @@
   "sendcommand": "Befehl senden",
   "successcommandsendconsole": "Der Command wurde erfolgreich zur Konsole gesendet",
   "successcommandsendserver": "Der Command wurde erfolgreich zum Server/Proxy gesendet",
-  "console": "CloudNet-Master Konsole",
+  "console": "Konsole",
   "consoleinfo": "Hier findest du die CloudNet Master Konsole.",
   "openconsole": "Konsole öffnen",
   "stopcloud": "Cloud stoppen",
