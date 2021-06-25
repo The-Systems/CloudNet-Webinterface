@@ -70,16 +70,8 @@ if ($json->response == true) {
                     </table>
                 </div>
                 <?php
-                $design = "";
-                if ($main->getconfig("discord-theme") === "true") {
-                    $design = "white";
-                } else {
-                    $design = "black";
-                } ?>
-                <?php
                 $json1 = $main->sendRequest("permission", $_SESSION['cn_webinterface-name'], "web.createuser");
                 if ($json1->response == true) {
-                    ?>
                     ?>
                     <div class="modal fade dark" id="exampleModal" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
