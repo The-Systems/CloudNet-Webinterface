@@ -7,11 +7,15 @@
     <meta charset="UTF-8">
 
     <link rel="stylesheet" href="<?= $main->getconfig("domainurl") ?>/assets/css/skel.css"/>
-    <link rel="stylesheet" href="<?= $main->getconfig("domainurl") ?>/assets/css/style.css"/>
+    <?php if ($main->getconfig("discord-theme") === "true") { ?>
+        <link rel="stylesheet" href="<?= $main->getconfig("domainurl") ?>/assets/css/style-dark.css"/>
+    <?php } else { ?>
+        <link rel="stylesheet" href="<?= $main->getconfig("domainurl") ?>/assets/css/style.css"/>
+    <?php } ?>
     <link rel="stylesheet" href="<?= $main->getconfig("domainurl") ?>/assets/css/style-xlarge.css"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
-          integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
-          crossorigin="anonymous">
+    <link href="<?= $main->getconfig("domainurl") ?>/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
     <script src="<?= $main->getconfig("domainurl") ?>/assets/js/jquery.min.js"></script>
     <script src="<?= $main->getconfig("domainurl") ?>/assets/js/skel.min.js"></script>
@@ -24,7 +28,11 @@
                 reset: 'full',
                 breakpoints: {
                     global: {
+                        <?php if ($main->getconfig("discord-theme") === "true") {?>
+                        href: '<?= $main->getconfig("domainurl") ?>/assets/css/style-dark.css',
+                        <?php } else { ?>
                         href: '<?= $main->getconfig("domainurl") ?>/assets/css/style.css',
+                        <?php }?>
                         containers: 1400,
                         grid: {gutters: ['2em', 0]}
                     },
@@ -42,7 +50,12 @@
                     },
                     medium: {
                         media: '(max-width: 980px)',
+                        <?php if ($main->getconfig("discord-theme") === "true") { ?>
+                        href: '<?= $main->getconfig("domainurl") ?>/assets/css/style-medium-dark.css',
+                        <?php } else { ?>
                         href: '<?= $main->getconfig("domainurl") ?>/assets/css/style-medium.css',
+
+                    <?php } ?>
                         containers: '90%!'
                     },
                     small: {
@@ -128,12 +141,32 @@
             word-break: normal;
         }
 
+        <?php if ($main->getconfig("discord-theme") === "true") {?>
+        td {
+            padding: .5em;
+            vertical-align: top;
+            border: 1px solid #3d4147;
+        }
+
+        <?php } else { ?>
         td {
             padding: .5em;
             vertical-align: top;
             border: 1px solid #bbbbbb;
         }
+        <?php } ?>
 
+        <?php if ($main->getconfig("discord-theme") === "true") {?>
+        th {
+            padding: .5em;
+            text-align: left;
+            border: 1px solid #3d4147;
+            border-bottom: 2px solid #3d4147;
+            background: #2C2F33;
+            color: #fff;
+        }
+
+        <?php } else { ?>
         th {
             padding: .5em;
             text-align: left;
@@ -141,6 +174,8 @@
             border-bottom: 3px solid #bbbbbb;
             background: #f4f7fa;
         }
+
+        <?php } ?>
 
 
         .table-scrollable {
@@ -157,7 +192,7 @@
 
         .table-scrollable::-webkit-scrollbar-thumb {
             border-radius: 8px;
-            border: 3px solid #fff;
+            border: 3px solid #3d4147;
             background-color: rgba(0, 0, 0, .3);
         }
     </style>
@@ -167,7 +202,7 @@
 <body id="landing">
 <header id="header">
 
-    <h1><a href="<?= $main->getconfig("domainurl") ?>"><?= $main->getconfig("name") ?></a></h1>
+    <h1><a style="text-decoration: none;" href="<?= $main->getconfig("domainurl") ?>"><?= $main->getconfig("name") ?></a></h1>
     <nav id="nav">
         <ul>
             <?php if (isset($_SESSION['cn_webinterface-logged'])) { ?>
@@ -175,10 +210,19 @@
                     <a href="<?= $main->getconfig("domainurl") ?>/logged"><?= $main->language_getMessage("startpage") ?></a>
                 </li>
                 <li>
-                    <a href="<?= $main->getconfig("domainurl") ?>/logged/server"><?= $main->language_getMessage("serverpage") ?></a>
+                    <a href="<?= $main->getconfig("domainurl") ?>/logged/status"><?= $main->language_getMessage("statusheader") ?></a>
+                </li>
+                <li>
+                    <a href="<?= $main->getconfig("domainurl") ?>/logged/users"><?= $main->language_getMessage("userpage") ?></a>
+                </li>
+                <li>
+                    <a href="<?= $main->getconfig("domainurl") ?>/logged/servers"><?= $main->language_getMessage("serverpage") ?></a>
                 </li>
                 <li>
                     <a href="<?= $main->getconfig("domainurl") ?>/logged/proxy"><?= $main->language_getMessage("proxypage") ?></a>
+                </li>
+                <li>
+                    <a href="<?= $main->getconfig("domainurl") ?>/logged/console"><?= $main->language_getMessage("console") ?></a>
                 </li>
             <?php } ?>
             <li>

@@ -67,7 +67,7 @@ header.major p {
 }
 
 #navPanel {
-    background: rgba(136, 132, 132, 0.97);
+    background: rgba(65, 61, 61, 0.97);
     color: #444;
     border-right: solid 1px rgba(144, 144, 144, 0.25);
     box-shadow: 0.5em 0 2em 0 rgba(0, 0, 0, 0.125);

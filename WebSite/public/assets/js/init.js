@@ -23,7 +23,7 @@
 			},
 			medium: {
 				media: '(max-width: 980px)',
-				href: 'assets/css/style-medium.css',
+				href: 'assets/css/style-medium-dark.css',
 				containers: '90%!'
 			},
 			small: {
