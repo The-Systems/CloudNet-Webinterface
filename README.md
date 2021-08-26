@@ -1,5 +1,6 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Discord](https://img.shields.io/discord/340197684688453632.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/CYHuDpx)
+[![CodeQL](https://github.com/The-Systems/CloudNet-Webinterface/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/The-Systems/CloudNet-Webinterface/actions/workflows/codeql-analysis.yml)
 <br>
 
 <img src="https://cdn.the-systems.eu/icon-transparent-banner.png" width="300px" />
